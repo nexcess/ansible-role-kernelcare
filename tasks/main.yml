@@ -11,3 +11,10 @@
 - name: Install License Key
   command: kcarectl --register "{{ kernelcare_key }}"
   when: kernelcare_key != ""
+
+- name: Start + Start-on-boot
+  service:
+    name="kcare"
+    state="started"
+    enabled="yes"
+  when: kernelcare_enabled
